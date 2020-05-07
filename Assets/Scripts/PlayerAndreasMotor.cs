@@ -1,57 +1,24 @@
 ﻿using UnityEngine;
 using System;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerAndreasMotor : MonoBehaviour
 {
-    private Vector3 velocity = Vector3.zero;
-    private Vector3 rotation = Vector3.zero;
-    private Vector3 cameraRotation = Vector3.zero;
-    private Rigidbody rb;
-    [SerializeField]
-    private Camera cam;
-
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float m_pivoxMax = 50;
+    [SerializeField] float m_pivoxMin = -40;
+    [SerializeField] float m_sensitivity = 4;
+    private float pivot;
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        pivot = transform.localRotation.x;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    public void Move(Vector3 _velocity)
+    private void Update()
     {
-        velocity = _velocity;
+        pivot -= Input.GetAxis("Mouse Y") * m_sensitivity;
+        pivot = Mathf.Clamp(pivot, m_pivoxMin, m_pivoxMax);
+        transform.localRotation = Quaternion.Euler(pivot, 0, 0);
     }
 
-    public void Rotate(Vector3 _rotation)
-    {
-        rotation = _rotation;
-    }
-
-    public void RotateCamera(Vector3 _cameraRotation)
-    {
-        cameraRotation = _cameraRotation;
-    }
-
-    void FixedUpdate()
-    {
-        PerformMovement();
-        PerformRotation();
-    }
-
-    void PerformMovement()
-    {
-        if(velocity != Vector3.zero)
-        {
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-        }
-    }
-
-    void PerformRotation()
-    {
-            rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-        if(cam != null)
-        {
-            cam.transform.Rotate(-cameraRotation); //minus infront inverses it.
-        }
-    }
 }
