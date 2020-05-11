@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour {
 
     public float walkSpeed = 10;
     public float runSpeed = 15;
-    private float speed;
     public float gravity;
     public float jumpForce;
+
+    private float speed;
+    private float y_velocity;
 
     private Vector3 movement = Vector3.zero;
 
@@ -29,11 +31,15 @@ public class PlayerController : MonoBehaviour {
         movement *= speed;
 
         if (controller.isGrounded && Input.GetKey(KeyCode.Space)) {
-            movement.y = jumpForce;
+            y_velocity = jumpForce;
         }
-
-        movement.y -= gravity * Time.deltaTime;
+       
         controller.Move(movement * Time.deltaTime);
+    }
+
+    private void FixedUpdate() {
+        controller.Move(new Vector3(0, y_velocity * Time.deltaTime));
+        y_velocity  -= gravity * Time.deltaTime;
     }
 
     private void checkRun() {
