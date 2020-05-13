@@ -11,8 +11,7 @@ public class Shoot : MonoBehaviour {
     [SerializeField] private float bulletVel = 5;
     [SerializeField] private float fireRate;
     private float lastShot = 0;
-
-
+    
 
     // Update is called once per frame
     void Update() {
