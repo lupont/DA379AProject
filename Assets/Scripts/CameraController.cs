@@ -23,9 +23,9 @@ public class CameraController : MonoBehaviour {
         Vector3 rotateGun = gun.transform.rotation.eulerAngles;
         Vector3 rotatePlayer = player.transform.rotation.eulerAngles;
 
-        rotateGun.z -= rotAmountY;
+        // rotateGun.z -= rotAmountY;
         // rotateGun.z = Mathf.Clamp(rotateGun.z, minY, maxY);
-        rotateGun.x = 0;
+        rotateGun.x -= rotAmountY;
         rotatePlayer.y += rotAmountX;
 
         gun.rotation = Quaternion.Euler(rotateGun);
