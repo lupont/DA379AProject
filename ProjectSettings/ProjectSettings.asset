@@ -675,10 +675,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 162ceb99-7773-4b76-8f5f-e876d2f752e7
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: DA379AProject
+  organizationId: masseg
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

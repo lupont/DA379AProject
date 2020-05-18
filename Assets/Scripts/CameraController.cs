@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
+    [SerializeField] private float mouseSensitivity;
+    [SerializeField] private Transform player, gun;
+    private float minY = -45f;
+    private float maxY = 45f;
 
-    public float mouseSensitivity;
-
-    [SerializeField]
-    Transform player, gun;
-  
-    // Update is called once per frame
     void Update() {
         Cursor.lockState = CursorLockMode.Locked;
         RotateCamera();
@@ -25,8 +23,9 @@ public class CameraController : MonoBehaviour {
         Vector3 rotateGun = gun.transform.rotation.eulerAngles;
         Vector3 rotatePlayer = player.transform.rotation.eulerAngles;
 
-        rotateGun.z -= rotAmountY;
-        rotateGun.x = 0;
+        // rotateGun.z -= rotAmountY;
+        // rotateGun.z = Mathf.Clamp(rotateGun.z, minY, maxY);
+        rotateGun.x -= rotAmountY;
         rotatePlayer.y += rotAmountX;
 
         gun.rotation = Quaternion.Euler(rotateGun);
