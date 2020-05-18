@@ -9,13 +9,14 @@ public class PlayerAndreasController : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     private float pivot;
     [SerializeField] float m_sensitivity = 4.0f;
-    [SerializeField] float jumpSpeed = 8.0f;
+    [SerializeField] float jumpForce = 5.0f;
     [SerializeField] float gravity = 20.0f;
-
+    private bool jumped;
     Vector2 direction = new Vector2();
 
     void Start()
     {
+        jumped = false;
         pivot = transform.localRotation.x;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -41,12 +42,28 @@ public class PlayerAndreasController : MonoBehaviour
         {
             movement = transform.rotation * movement;
         }
-        if(CC.isGrounded && Input.GetButton("Jump"))
+        if(CC.isGrounded && Input.GetButton("Jump") && !jumped)
         {
-            movement.y = jumpSpeed;
-            
+            movement.y = jumpForce;
+            animator.SetBool("Jumping", true);
+            jumped = true;
+            StartCoroutine(Jumped());
+        }else if (CC.isGrounded)
+        {
+
+            animator.SetBool("Jumping", false);
         }
         movement.y -= gravity * Time.deltaTime;
         CC.Move(movement * speed * Time.deltaTime);
+    }
+    IEnumerator Jumped()
+    {
+        if(jumped == true)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        yield return null;
+        jumped = false;
+
     }
 }
