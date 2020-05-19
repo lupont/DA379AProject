@@ -6,7 +6,7 @@ public class AlexMainMenu : MonoBehaviour
 {
 
     [SerializeField]
-    private string gameSceneName;
+    private string gameSceneName = null;
 
     public void PlayGame()
     {
