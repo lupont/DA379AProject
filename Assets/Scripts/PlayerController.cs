@@ -6,15 +6,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Animator animator;
+    [SerializeField] private float walkSpeed = 10;
+    [SerializeField] private float runSpeed = 15;
+    [SerializeField] private float gravity;
+    [SerializeField] private float jumpForce;
 
-    public float walkSpeed = 10;
-    public float runSpeed = 15;
-    public float gravity;
-    public float jumpForce;
     private float speed;
     private float y_velocity;
     private Vector3 movement = Vector3.zero;
-
 
     // Update is called once per frame
     void Update() {
