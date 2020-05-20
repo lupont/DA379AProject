@@ -7,10 +7,14 @@ using TMPro;
 /// </summary>
 public class AlexUI : MonoBehaviour
 {
-    [SerializeField] private GameObject shieldObject;
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Slider shieldSlider;
-    [SerializeField] private TextMeshProUGUI currentAmmo;
+    [SerializeField] private GameObject shieldObject = null;
+    [SerializeField] private Slider healthSlider = null;
+    [SerializeField] private Slider shieldSlider = null;
+    [SerializeField] private TextMeshProUGUI currentAmmo = null;
+    [SerializeField] private Gradient healthGradient = null;
+    [SerializeField] private Gradient shieldGradient = null;
+    [SerializeField] private Image healthFill = null;
+    [SerializeField] private Image shieldFill = null;
 
     /// <summary>
     /// Set a new maximum value for the health bar and update the current
@@ -32,6 +36,7 @@ public class AlexUI : MonoBehaviour
     {
         if (health > healthSlider.maxValue) health = (int) healthSlider.maxValue;
         healthSlider.value = health;
+        healthFill.color = healthGradient.Evaluate(healthSlider.normalizedValue);
     }
 
     /// <summary>
@@ -54,6 +59,7 @@ public class AlexUI : MonoBehaviour
     {
         if (shield > shieldSlider.maxValue) shield = (int) shieldSlider.maxValue;
         shieldSlider.value = shield;
+        shieldFill.color = shieldGradient.Evaluate(shieldSlider.normalizedValue);
     }
 
     /// <summary>
