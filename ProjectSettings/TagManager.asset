@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - ShieldStation
+  - Restock
   layers:
   - Default
   - TransparentFX
@@ -14,9 +16,9 @@ TagManager:
   - UI
   - 
   - 
-  - PlayerBody
+  - LocalPlayer
   - Gun
-  - 
+  - Player
   - 
   - 
   - 
