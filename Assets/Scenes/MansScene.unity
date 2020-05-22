@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -776,7 +776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690204999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.84, z: 0}
+  m_LocalPosition: {x: 0, y: -5.84, z: 0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2084433566}
@@ -2442,7 +2442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039828684}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.95, y: -5.84, z: 3.37}
+  m_LocalPosition: {x: 2.6, y: -5.84, z: 7.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2084433566}
@@ -2469,8 +2469,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2084433566}
-  - component: {fileID: 2084433569}
   - component: {fileID: 2084433568}
+  - component: {fileID: 2084433569}
   - component: {fileID: 2084433567}
   m_Layer: 0
   m_Name: NetworkManager
@@ -2568,7 +2568,7 @@ MonoBehaviour:
   runInBackground: 1
   startOnHeadless: 1
   showDebugMessages: 0
-  serverTickRate: 128
+  serverTickRate: 64
   offlineScene: 
   onlineScene: 
   transport: {fileID: 2084433568}

@@ -1286,7 +1286,7 @@ MonoBehaviour:
   animator: {fileID: 9209669002510626624}
   walkSpeed: 5
   runSpeed: 8
-  gravity: 50
+  gravity: 40
   jumpForce: 10
 --- !u!114 &6774068112422679237
 MonoBehaviour:
@@ -3484,7 +3484,7 @@ PrefabInstance:
     - target: {fileID: 2032718675454280893, guid: 476aaf0463def4a679529290a81ade53,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 85
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 2032718675454280893, guid: 476aaf0463def4a679529290a81ade53,
         type: 3}
@@ -3495,6 +3495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032718675454280893, guid: 476aaf0463def4a679529290a81ade53,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2032718675844634569, guid: 476aaf0463def4a679529290a81ade53,
         type: 3}
@@ -3846,6 +3851,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2032718675938323951, guid: 476aaf0463def4a679529290a81ade53,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2032718676012430665, guid: 476aaf0463def4a679529290a81ade53,
         type: 3}
       propertyPath: m_Layer
@@ -3959,12 +3969,12 @@ PrefabInstance:
     - target: {fileID: 2032718677119592151, guid: 476aaf0463def4a679529290a81ade53,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 500
+      value: 510
       objectReference: {fileID: 0}
     - target: {fileID: 2032718677119592151, guid: 476aaf0463def4a679529290a81ade53,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2032718677119592151, guid: 476aaf0463def4a679529290a81ade53,
         type: 3}

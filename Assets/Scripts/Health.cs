@@ -36,7 +36,6 @@ public class Health : NetworkBehaviour {
         }
     }
 
-
     public void DealDamage() {
         if (shield > 1) {
             shield -= 50;
