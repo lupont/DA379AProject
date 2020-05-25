@@ -68,3 +68,4 @@ artifacts
 .UnityLauncher.Editor
 upm-ci~/*
 com.unity.animation/.npmignore
+

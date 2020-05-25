@@ -2,27 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
+using TMPro;
 
-public class Health : MonoBehaviour {
-    private int health = 100;
-   [SerializeField] private Slider healthbar;
+public class Health : NetworkBehaviour {
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxShield = 100;
+    [SerializeField] private AlexUI ui;
+    private int health;
+    private int shield;
 
     void Start() {
-        healthbar.value = health;
+        ui.EnableShield(true);
+        ui.SetMaxHealth(maxHealth);
+        ui.SetMaxShield(maxShield);
+        health = maxHealth;
+        shield = maxShield;
+        InvokeRepeating("Regenerate", 0, 1);
     }
 
     void Update() {
-
+        if (health <= 0) {
+            CmdSetDead(gameObject.transform.name);
+            gameObject.SetActive(false);
+        }
     }
 
-    void OnCollisionEnter(Collision collision) {
-        if (collision.transform.CompareTag("Bullet")) {
-            Debug.Log("I was hit " + gameObject.name);
-            health -= 10;
-            healthbar.value = health;
-            if (health <= 0) {
-                gameObject.SetActive(false);
-            }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if (hit.transform.CompareTag("ShieldStation")) {
+            shield = maxShield;
+            ui.SetShield(shield);
         }
+    }
+
+    public void DealDamage() {
+        if (shield > 1) {
+            shield -= 50;
+            ui.SetShield(shield);
+        }
+        else {
+            health -= 20;
+            ui.SetHealth(health);
+        }
+    }
+
+    private void Regenerate() {
+        if (health < maxHealth) {
+            health += 2;
+            ui.SetHealth(health);
+        }
+    }
+
+    [Command]
+    void CmdSetDead(string id) {
+        Destroy(GameObject.Find(id));
     }
 }
