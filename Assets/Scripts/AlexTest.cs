@@ -6,6 +6,7 @@
 public class AlexTest : MonoBehaviour
 {
     public AlexUI ui;
+    public AlexEndSplash end;
 
     public int maxHealth = 100;
     public int currentHealth = 0;
@@ -16,6 +17,8 @@ public class AlexTest : MonoBehaviour
 
     public int maxAmmo = 99;
     public int currentAmmo = 0;
+
+    public int targetsLeft = 15;
 
 
     void Start()
@@ -29,6 +32,10 @@ public class AlexTest : MonoBehaviour
 
         currentAmmo = maxAmmo;
         ui.SetAmmo(maxAmmo);
+
+        ui.SetDronesLeft(targetsLeft);
+
+        ui.SetObjective("OBJECTIVE:\nKill all the drones!");
 
     }
 
@@ -82,6 +89,38 @@ public class AlexTest : MonoBehaviour
         {
             currentAmmo = maxAmmo;
             ui.SetAmmo(currentAmmo);
+        }
+
+        // Win splash
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            end.SetMessage(AlexEndSplash.WINNER);
+            ui.gameObject.SetActive(false);
+            end.gameObject.SetActive(true);
+        }
+
+        // Lose splash
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            end.SetMessage(AlexEndSplash.LOSER);
+            ui.gameObject.SetActive(false);
+            end.gameObject.SetActive(true);
+        }
+
+        // Kill drone
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (targetsLeft > 0)
+                targetsLeft--;
+            ui.SetDronesLeft(targetsLeft);
+        }
+
+        // Kill player
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (targetsLeft > 0)
+                targetsLeft--;
+            ui.SetPlayersLeft(targetsLeft);
         }
     }
 }
