@@ -23,12 +23,18 @@ public class DroneAI : MonoBehaviour
 
     private float lastShot = 0;
 
+    private float lookRadius = 15;
+
+    private float yPosition;
+
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.baseOffset = 5;
         agent.Warp(transform.position);
+        yPosition = transform.position.y;
     }
 
     // Update is called once per frame
@@ -41,6 +47,8 @@ public class DroneAI : MonoBehaviour
         var position = transform.position;
         var rotation = transform.rotation;
 
+        // transform.position.Set(position.x, yPosition + 2 * Mathf.Sin(1 * Time.time), position.z);
+ 
         if (Time.time > fireRate + lastShot) 
         {
             var go = Instantiate(bullet, position, rotation);
@@ -49,18 +57,25 @@ public class DroneAI : MonoBehaviour
             lastShot = Time.time;
         }
 
-        if (target != null) 
+        if (target != null && agent != null) 
         {
-            Debug.Log("Target was not null");
-            if (agent != null)
+            Vector3 targetDir = target.transform.position - transform.position;
+            float angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
+            
+            if (angleToPlayer >= -90 && angleToPlayer <= 90) // 180° FOV
             {
-                Debug.Log("Agent was not null");
-                var p = target.transform.position;
+                var tp = target.transform.position;
+                var p = tp * 0.9f;
                 Debug.Log($"Target pos: {p.x} {p.y} {p.z}");
                 Debug.Log(agent.SetDestination(p));
             }
-            else Debug.Log("Agent was null");
         }
-        else Debug.Log("Target was null");
+        else Debug.Log("Target or agent was null");
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }
