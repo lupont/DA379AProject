@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
         animator.SetFloat("DirectionY", moveVertical);
         animator.SetBool("Moving", movement.sqrMagnitude > 0);
 
+
         if (controller.isGrounded && Input.GetKey(KeyCode.Space)) {
             y_velocity = jumpForce;
         }

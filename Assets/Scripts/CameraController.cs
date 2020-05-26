@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour {
 
     void Update() {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         RotateCamera();
     }
 

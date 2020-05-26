@@ -83,4 +83,5 @@ public class AlexUI : MonoBehaviour
 
         currentAmmo.text = ammo.ToString();
     }
+
 }
