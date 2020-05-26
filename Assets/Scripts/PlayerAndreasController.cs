@@ -9,8 +9,8 @@ public class PlayerAndreasController : MonoBehaviour
     [SerializeField] private float speed = 4.0f;
     private float pivot;
     [SerializeField] float m_sensitivity = 4.0f;
-    [SerializeField] float jumpForce = 100.0f;
-    [SerializeField] float gravity = 25.0f;
+    [SerializeField] float jumpForce = 10.0f;
+    [SerializeField] float gravity = 40.0f;
     private bool jumped;
     private bool crouching;
     private Vector2 direction = new Vector2();
