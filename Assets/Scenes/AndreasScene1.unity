@@ -538,10 +538,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5c097d8c7cf704d9d3e9deaf3ffd70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   bullet: {fileID: 5641420869127595345, guid: 374f262a5c523234d8a482bf09041533, type: 3}
-  gun: {fileID: 784115567}
+  barrel: {fileID: 0}
   bulletVel: 40
   fireRate: 0.5
+  ammoText: {fileID: 0}
 --- !u!1 &874363094
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,10 +752,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 993111002}
   CC: {fileID: 993111001}
-  speed: 5
+  speed: 4
   m_sensitivity: 4
-  jumpForce: 5
-  gravity: 20
+  jumpForce: 100
+  gravity: 25
 --- !u!143 &993111001
 CharacterController:
   m_ObjectHideFlags: 0
@@ -764,13 +767,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.9
+  m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.95, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &993111002 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 495432ce2042b344297f4e9260a910c6,
@@ -1832,15 +1835,7 @@ PrefabInstance:
     - target: {fileID: -6057140222963153312, guid: 495432ce2042b344297f4e9260a910c6,
         type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
-        'mixamorig:LeftLeg'\n\tand more ...\n\tFrom animation clip 'Idle'\n\tFrom
-        animation clip 'Walk Left'\n\tFrom animation clip 'Walk Right'\n\tFrom animation
-        clip 'Walking'\n\tFrom animation clip 'Walking Backwards'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 495432ce2042b344297f4e9260a910c6,
         type: 3}
