@@ -15,6 +15,8 @@ public class AlexUI : MonoBehaviour
     [SerializeField] private Gradient shieldGradient = null;
     [SerializeField] private Image healthFill = null;
     [SerializeField] private Image shieldFill = null;
+    [SerializeField] private TextMeshProUGUI targetsLeft = null;
+    [SerializeField] private TextMeshProUGUI objective = null;
 
     /// <summary>
     /// Set a new maximum value for the health bar and update the current
@@ -82,6 +84,33 @@ public class AlexUI : MonoBehaviour
         else if (ammo < 0) ammo = 0;
 
         currentAmmo.text = ammo.ToString();
+    }
+
+    /// <summary>
+    /// Set game objective text
+    /// </summary>
+    /// <param name="newObjective"></param>
+    public void SetObjective(string newObjective)
+    {
+        objective.text = newObjective;
+    }
+
+    /// <summary>
+    /// Update number of drones left
+    /// </summary>
+    /// <param name="drones"></param>
+    public void SetDronesLeft(int drones)
+    {
+        targetsLeft.text = "Drones left: " + drones;
+    }
+
+    /// <summary>
+    /// Update number of players left
+    /// </summary>
+    /// <param name="players"></param>
+    public void SetPlayersLeft(int players)
+    {
+        targetsLeft.text = "Players left: " + players;
     }
 
 }
