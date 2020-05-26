@@ -28,7 +28,7 @@ public class AlexPauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        playerUI.SetActive(true);
+        //playerUI.SetActive(true);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; // TODO should only pause time in single player mode
         GameIsPaused = false;
@@ -36,7 +36,7 @@ public class AlexPauseMenu : MonoBehaviour
 
     void Pause()
     {
-        playerUI.SetActive(false);
+        //playerUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         pauseMenu.SetActive(true);
         optionsMenu.SetActive(false);

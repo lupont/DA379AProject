@@ -6,7 +6,7 @@
 public class AlexTest : MonoBehaviour
 {
     public AlexUI ui;
-    public AlexEndSplash end;
+    //public AlexEndSplash end;
 
     public int maxHealth = 100;
     public int currentHealth = 0;
@@ -94,17 +94,15 @@ public class AlexTest : MonoBehaviour
         // Win splash
         if (Input.GetKeyDown(KeyCode.W))
         {
-            end.SetMessage(AlexEndSplash.WINNER);
-            ui.gameObject.SetActive(false);
-            end.gameObject.SetActive(true);
+            ui.SetEndMessage(AlexUI.WINNER);
+            ui.DisplayEndMessage();
         }
 
         // Lose splash
         if (Input.GetKeyDown(KeyCode.L))
         {
-            end.SetMessage(AlexEndSplash.LOSER);
-            ui.gameObject.SetActive(false);
-            end.gameObject.SetActive(true);
+            ui.SetEndMessage(AlexUI.LOSER);
+            ui.DisplayEndMessage();
         }
 
         // Kill drone
