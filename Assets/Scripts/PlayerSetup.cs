@@ -8,7 +8,7 @@ public class PlayerSetup : NetworkBehaviour {
     [SerializeField] private GameObject[] doNotRender;
 
 
-    // Start is called before the first frame update
+    // Disable scripts for non-local players and disable rendering for body parts of local player
     void Start() {
         if (!isLocalPlayer) {
             for (int i = 0; i < disables.Length; i++) {
@@ -24,11 +24,5 @@ public class PlayerSetup : NetworkBehaviour {
 
         string id = "Player " + GetComponent<NetworkIdentity>().netId;
         transform.name = id;
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
     }
 }

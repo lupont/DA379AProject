@@ -1304,7 +1304,7 @@ MonoBehaviour:
   syncInterval: 0.1
   bullet: {fileID: 5641420869127595345, guid: 374f262a5c523234d8a482bf09041533, type: 3}
   barrel: {fileID: 6070823876397215005}
-  bulletVel: 40
+  bulletVel: 45
   fireRate: 0.5
   ammoText: {fileID: 3219000909934763023}
 --- !u!114 &3493468971802037311

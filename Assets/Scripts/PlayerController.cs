@@ -6,16 +6,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Animator animator;
-    [SerializeField] private float walkSpeed = 10;
-    [SerializeField] private float runSpeed = 15;
-    [SerializeField] private float gravity;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float walkSpeed = 5;
+    [SerializeField] private float runSpeed = 8;
+    [SerializeField] private float gravity = 40;
+    [SerializeField] private float jumpForce = 10;
 
     private float speed;
     private float y_velocity;
     private Vector3 movement = Vector3.zero;
 
-    // Update is called once per frame
     void Update() {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
@@ -37,6 +36,7 @@ public class PlayerController : MonoBehaviour {
         controller.Move(movement * Time.deltaTime);
     }
 
+    // Lägg på lite gravitaion om guppen har hoppat
     private void FixedUpdate() {
         controller.Move(new Vector3(0, y_velocity * Time.deltaTime));
         y_velocity  -= gravity * Time.deltaTime;
