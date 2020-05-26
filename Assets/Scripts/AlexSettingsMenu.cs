@@ -13,6 +13,7 @@ public class AlexSettingsMenu : MonoBehaviour
     public Sprite volume2;
     public Sprite volume3;
     public Dropdown resolutionDropdown;
+    public Toggle fullscreenToggle;
 
     Resolution[] resolutions;
 
@@ -41,12 +42,15 @@ public class AlexSettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        fullscreenToggle.isOn = Screen.fullScreen;
+
     }
 
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); ;
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void SetVolume(float volume)
