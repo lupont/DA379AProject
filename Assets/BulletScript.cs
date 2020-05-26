@@ -5,19 +5,11 @@ using Mirror;
 
 public class BulletScript : NetworkBehaviour {
     [SyncVar] private string shooter;
-    // Start is called before the first frame update
-    void Start() {
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-    
+  
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.CompareTag("Player") && collision.transform.name != shooter) {
             CmdPlayerShot(collision.transform.name);
-        }
+        } 
     }
 
     void CmdPlayerShot(string id) {
@@ -25,8 +17,8 @@ public class BulletScript : NetworkBehaviour {
         GameObject.Find(id).SendMessage("DealDamage", SendMessageOptions.DontRequireReceiver);
     }
 
+
     public void setShooter(string shooter) {
         this.shooter = shooter;
     }
-
 }
