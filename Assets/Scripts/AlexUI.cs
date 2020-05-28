@@ -15,6 +15,17 @@ public class AlexUI : MonoBehaviour
     [SerializeField] private Gradient shieldGradient = null;
     [SerializeField] private Image healthFill = null;
     [SerializeField] private Image shieldFill = null;
+    [SerializeField] private TextMeshProUGUI targetsLeft = null;
+    [SerializeField] private TextMeshProUGUI objective = null;
+    [SerializeField] private TextMeshProUGUI endMessage = null;
+    [SerializeField] private GameObject endSplash = null;
+    [SerializeField] private GameObject hud = null;
+
+    // End splash
+    public const int WINNER = 0;
+    public const int LOSER = 1;
+    private string[] messages = { "You are victorious", "You are a loser" };
+
 
     /// <summary>
     /// Set a new maximum value for the health bar and update the current
@@ -83,4 +94,50 @@ public class AlexUI : MonoBehaviour
 
         currentAmmo.text = ammo.ToString();
     }
+
+    /// <summary>
+    /// Set game objective text
+    /// </summary>
+    /// <param name="newObjective"></param>
+    public void SetObjective(string newObjective)
+    {
+        objective.text = newObjective;
+    }
+
+    /// <summary>
+    /// Update number of drones left
+    /// </summary>
+    /// <param name="drones"></param>
+    public void SetDronesLeft(int drones)
+    {
+        targetsLeft.text = "Drones left: " + drones;
+    }
+
+    /// <summary>
+    /// Update number of players left
+    /// </summary>
+    /// <param name="players"></param>
+    public void SetPlayersLeft(int players)
+    {
+        targetsLeft.text = "Players left: " + players;
+    }
+
+    /// <summary>
+    /// Set end message
+    /// </summary>
+    /// <param name="index"></param>
+    public void SetEndMessage(int index)
+    {
+        if (index < 0 || index > 1)
+            index = 1;
+
+        endMessage.text = messages[index];
+    }
+
+    public void DisplayEndMessage()
+    {
+        hud.SetActive(false); 
+        endSplash.SetActive(true);
+    }
+
 }
