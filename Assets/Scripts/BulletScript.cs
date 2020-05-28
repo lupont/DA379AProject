@@ -17,7 +17,6 @@ public class BulletScript : NetworkBehaviour {
         GameObject.Find(id).SendMessage("DealDamage", SendMessageOptions.DontRequireReceiver);
     }
 
-
     public void setShooter(string shooter) {
         this.shooter = shooter;
     }

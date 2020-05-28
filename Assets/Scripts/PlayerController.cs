@@ -10,10 +10,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float runSpeed = 8;
     [SerializeField] private float gravity = 40;
     [SerializeField] private float jumpForce = 10;
-<<<<<<< HEAD
     [SerializeField] private Transform gun;
-=======
->>>>>>> 242cca32955ead71c54f06af19fef2144eaffb8c
+
 
     private float speed;
     private float y_velocity;
