@@ -6,9 +6,12 @@ using Mirror;
 public class PlayerSetup : NetworkBehaviour {
     [SerializeField] private Behaviour[] disables;
     [SerializeField] private GameObject[] doNotRender;
+<<<<<<< HEAD
     [SerializeField] private AlexUI ui;
     [SyncVar] public int players;
     
+=======
+>>>>>>> 242cca32955ead71c54f06af19fef2144eaffb8c
 
 
     // Disable scripts for non-local players and disable rendering for body parts of local player
@@ -27,6 +30,7 @@ public class PlayerSetup : NetworkBehaviour {
 
         string id = "Player " + GetComponent<NetworkIdentity>().netId;
         transform.name = id;
+<<<<<<< HEAD
 
         hideNetworkHUD();
         CmdPlayersLeft();
@@ -54,5 +58,7 @@ public class PlayerSetup : NetworkBehaviour {
     void CmdPlayersLeft() {
         NetworkRoomManager networkManager = FindObjectOfType<NetworkRoomManager>();
         players = networkManager.numPlayers;
+=======
+>>>>>>> 242cca32955ead71c54f06af19fef2144eaffb8c
     }
 }
