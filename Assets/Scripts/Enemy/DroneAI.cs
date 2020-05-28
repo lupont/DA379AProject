@@ -32,7 +32,7 @@ public class DroneAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.baseOffset = 5;
+        agent.baseOffset = 3;
         agent.Warp(transform.position);
         yPosition = transform.position.y;
     }
@@ -42,7 +42,7 @@ public class DroneAI : MonoBehaviour
     {
         // transform.position += new Vector3(0.01f, 0, 0);
         // transform.rotation.eulerAngles = new Vector3(1f, 0, 0);
-        // transform.Rotate(1f, 0, 0);
+        transform.Rotate(1f, 0, 0);
 
         var position = transform.position;
         var rotation = transform.rotation;
