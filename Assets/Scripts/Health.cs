@@ -18,7 +18,7 @@ public class Health : NetworkBehaviour {
         ui.SetMaxShield(maxShield);
         health = maxHealth;
         shield = maxShield;
-        InvokeRepeating("Regenerate", 0, 1);
+        InvokeRepeating("Regenerate", 0, 0.5f);
     }
 
     void Update() {
@@ -37,19 +37,18 @@ public class Health : NetworkBehaviour {
     }
 
     public void DealDamage() {
-        if (shield > 1) {
-            shield -= 50;
+        if (shield > 0) {
+            shield -= 20;
             ui.SetShield(shield);
-        }
-        else {
-            health -= 20;
+        } else {
+            health -= 40;
             ui.SetHealth(health);
         }
     }
 
     private void Regenerate() {
         if (health < maxHealth) {
-            health += 2;
+            health += 1;
             ui.SetHealth(health);
         }
     }

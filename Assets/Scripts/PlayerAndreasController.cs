@@ -6,56 +6,84 @@ public class PlayerAndreasController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterController CC;
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 4.0f;
     private float pivot;
     [SerializeField] float m_sensitivity = 4.0f;
-    [SerializeField] float jumpForce = 5.0f;
-    [SerializeField] float gravity = 20.0f;
+    [SerializeField] float jumpForce = 10.0f;
+    [SerializeField] float gravity = 40.0f;
     private bool jumped;
-    Vector2 direction = new Vector2();
+    private bool crouching;
+    private Vector2 direction = new Vector2();
+    private Vector3 movement;
 
     void Start()
     {
         jumped = false;
+        crouching = false;
         pivot = transform.localRotation.x;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
     void Update()
     {
-      
+        Movement();
+        Jump();
+        Crouch();
+        CC.Move(movement * speed * Time.deltaTime);
+    }
+
+    void Movement()
+    {
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
 
         direction.Normalize();
 
-        pivot += Input.GetAxis("Mouse X") * m_sensitivity;
-        transform.localRotation = Quaternion.Euler(0, pivot, 0);
+        //  pivot += Input.GetAxis("Mouse X") * m_sensitivity;
+        //  transform.localRotation = Quaternion.Euler(0, pivot, 0);
 
         animator.SetFloat("DirectionX", direction.x);
         animator.SetFloat("DirectionY", direction.y);
 
         animator.SetBool("Moving", direction.sqrMagnitude > 0);
 
-        Vector3 movement = new Vector3(direction.x, 0, direction.y);
+        movement = new Vector3(direction.x, 0, direction.y);
         if (direction.sqrMagnitude > 0)
         {
             movement = transform.rotation * movement;
         }
-        if(CC.isGrounded && Input.GetButton("Jump") && !jumped)
+    }
+    void Jump()
+    {
+        if (CC.isGrounded && Input.GetButton("Jump") && !jumped)
         {
             movement.y = jumpForce;
             animator.SetBool("Jumping", true);
             jumped = true;
             StartCoroutine(Jumped());
-        }else if (CC.isGrounded)
+        }
+        else if (CC.isGrounded)
         {
-
+            movement.y = -1;
             animator.SetBool("Jumping", false);
         }
         movement.y -= gravity * Time.deltaTime;
-        CC.Move(movement * speed * Time.deltaTime);
     }
+
+    void Crouch()
+    {
+        if (!Input.GetKey(KeyCode.C) && crouching)
+        {
+            StopCrouch();
+            speed = 4.0f;
+        }
+        if (Input.GetKey(KeyCode.C) && !crouching)
+        {
+            StartCrouch();
+            speed = 2.0f;
+        }
+    }
+
     IEnumerator Jumped()
     {
         if(jumped == true)
@@ -65,5 +93,19 @@ public class PlayerAndreasController : MonoBehaviour
         yield return null;
         jumped = false;
 
+    }
+    void StartCrouch()
+    {
+            animator.SetBool("Crouching", true);
+            crouching = true;
+    }
+    void StopCrouch()
+    {
+            animator.SetBool("Crouching", false);
+            crouching = false;
+    }
+    void gotHit()
+    {
+        animator.Play("Hit Reaction", 0, 0.2f);
     }
 }
