@@ -10,16 +10,29 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float runSpeed = 8;
     [SerializeField] private float gravity = 40;
     [SerializeField] private float jumpForce = 10;
+    [SerializeField] private Transform gun;
+
 
     private float speed;
     private float y_velocity;
+    private bool crouching = false;
     private Vector3 movement = Vector3.zero;
+    private Vector3 crouch;
+    private Vector3 stand;
+    private float smooth = 100;
+
+    private void Start() {
+        crouch = new Vector3(gun.localPosition.x, 0.75f, gun.localPosition.z);
+        stand = new Vector3(gun.localPosition.x, 1.3f, gun.localPosition.z);
+        
+    }
 
     void Update() {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         
         checkRun();
+        checkCrouch();
 
         movement = (transform.right * moveHorizontal + moveVertical * transform.forward);
         movement *= speed;
@@ -42,6 +55,28 @@ public class PlayerController : MonoBehaviour {
         y_velocity  -= gravity * Time.deltaTime;
     }
 
+    private void checkCrouch() {
+        if (!Input.GetKey(KeyCode.C) && crouching) {
+            StopCrouch();
+            speed = 4.0f;
+        }
+        if (Input.GetKey(KeyCode.C) && !crouching) {
+            StartCrouch();
+            speed = 2.0f;
+        }
+    }
+
+    private void StartCrouch() {
+        animator.SetBool("Crouching", true);
+        // gun.localPosition = Vector3.Lerp(stand, crouch, Time.deltaTime * 100f);
+        crouching = true;
+    }
+    private void StopCrouch() {
+        animator.SetBool("Crouching", false);
+        // gun.localPosition = Vector3.Lerp(crouch, stand, Time.deltaTime * 100f);
+        crouching = false;
+    }
+
     private void checkRun() {
         if (Input.GetKey(KeyCode.LeftShift)) {
             speed = runSpeed;
@@ -50,4 +85,5 @@ public class PlayerController : MonoBehaviour {
             speed = walkSpeed;
         }
     }
+
 }

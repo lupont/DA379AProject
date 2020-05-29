@@ -9,6 +9,7 @@ public class Health : NetworkBehaviour {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int maxShield = 100;
     [SerializeField] private AlexUI ui;
+    [SerializeField] private Animator animator;
     private int health;
     private int shield;
 
@@ -24,7 +25,8 @@ public class Health : NetworkBehaviour {
     void Update() {
         if (health <= 0) {
             CmdSetDead(gameObject.transform.name);
-            gameObject.SetActive(false);
+        } else if(gameObject.transform.position.y < -100f) {
+            CmdSetDead(gameObject.transform.name);
         }
     }
 
@@ -44,12 +46,17 @@ public class Health : NetworkBehaviour {
             health -= 40;
             ui.SetHealth(health);
         }
+        animator.Play("Hit Reaction", 0, 0.2f);
+    }
+
+    private void gotHit() {
+        animator.Play("Hit Reaction", 0, 0.2f);
     }
 
     private void Regenerate() {
         if (health < maxHealth) {
             health += 1;
-            ui.SetHealth(health);
+            gameObject.SetActive(false);
         }
     }
 

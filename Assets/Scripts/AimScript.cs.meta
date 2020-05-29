@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Scripts/AimScript.cs.meta
 guid: dcf2635813bd6c84d956a9eb16a24ade
+=======
+guid: cca85016318dfdc4da4c638430f162a0
+>>>>>>> 242cca32955ead71c54f06af19fef2144eaffb8c:Assets/BulletScript.cs.meta
+=======
+guid: dcf2635813bd6c84d956a9eb16a24ade
+>>>>>>> 242cca32955ead71c54f06af19fef2144eaffb8c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
