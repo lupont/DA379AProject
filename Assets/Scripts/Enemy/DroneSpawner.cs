@@ -18,7 +18,7 @@ public class DroneSpawner : MonoBehaviour
                 Instantiate(drone, new Vector3(x, 0, z), Quaternion.identity);
             }
         }
-        // Instantiate(drone, new Vector3(20, 0, 0), Quaternion.identity);
+        // Instantiate(drone, new Vector3(20, 0, 40), Quaternion.identity);
     }
 
     // Update is called once per frame
