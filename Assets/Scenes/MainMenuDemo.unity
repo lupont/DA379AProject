@@ -1978,6 +1978,11 @@ PrefabInstance:
       propertyPath: dontDestroyOnLoad
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6509296663832592548, guid: ae7ab9f109442fc4f921414c94321f8a,
+        type: 3}
+      propertyPath: maxConnections
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6509296663832592549, guid: ae7ab9f109442fc4f921414c94321f8a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3667,7 +3672,7 @@ MonoBehaviour:
   onlineScene: Assets/Scenes/MainMenuDemo.unity
   transport: {fileID: 1702666621}
   networkAddress: localhost
-  maxConnections: 4
+  maxConnections: 6
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}

@@ -12,7 +12,7 @@ public class ReturnScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKey(KeyCode.Escape)) {
+        if (Input.GetKey(KeyCode.Return)) {
             GetComponent<Button>().onClick.Invoke();
         }
     }
