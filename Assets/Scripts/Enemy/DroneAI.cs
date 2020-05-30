@@ -55,119 +55,56 @@ public class DroneAI : MonoBehaviour
         if (players != null && players.Length > 0)
         {
             target = players[0];
-            // Debug.Log($"Found player: {players[0].gameObject.ToString()}");
             return true;
         }
 
         target = null;
-        // Debug.Log("Did not find player");
         return false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // transform.position += new Vector3(0.01f, 0, 0);
-        // transform.rotation.eulerAngles = new Vector3(1f, 0, 0);
         FindPlayer();
 
-        // transform.position.Set(position.x, yPosition + 2 * Mathf.Sin(1 * Time.time), position.z);
- 
-        // if (Time.time > fireRate + lastShot) 
-        // {
-        //     var go = Instantiate(bullet, position, rotation);
-        //     go.GetComponent<Rigidbody>().velocity = go.transform.forward * bulletVel;
-        //     Destroy(go, 3);
-        //     lastShot = Time.time;
-        // }
+        if (target == null)
+            return;
 
-        // float viewAngle = 90;
+        Vector3 targetDir = target.transform.position - transform.position;
+        targetDir.y = targetDir.y + 2;
+        
+        Quaternion rot = Quaternion.LookRotation(targetDir);
+        float distance = Vector3.Distance(target.transform.position, transform.position);
 
-        // transform.Rotate(1, 1, 1);
-
-        if (target != null) 
+        if (distance < lookRadius)
         {
-        //     bool inView = false;
-        //     bool isVisible = false;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
 
-        //     Vector3 fwd_r = Quaternion.Euler(0, -viewAngle / 2, 0) * transform.forward;
-        //     Vector3 fwd_l = Quaternion.Euler(0, viewAngle / 2, 0) * transform.forward;
-        //     Debug.DrawRay(transform.position, fwd_r * 2, Color.blue);
-        //     Debug.DrawRay(transform.position, fwd_l * 2, Color.blue);
+            if (distance >= agent.stoppingDistance)
+                agent.SetDestination(target.transform.position);
 
-
-            Vector3 targetDir = target.transform.position - transform.position;
-            targetDir.y = targetDir.y + 2;
-            float angleToPlayer = (Vector3.Angle(transform.forward, targetDir));
-            
-        //     inView = angleToPlayer < (viewAngle / 2.0f);
-
-        //     if (Physics.Raycast(transform.position, targetDir, out RaycastHit hit, float.PositiveInfinity))
-        //     {
-        //         isVisible = hit.collider.gameObject.Equals(target);
-        //         Debug.Log(hit.collider.gameObject.name);
-
-        //         Debug.DrawLine(transform.position, hit.transform.position, Color.magenta);
-
-        //     }
-
-        //     Color c = inView ? (isVisible ? Color.green : Color.yellow) : Color.red;
-        //     Debug.DrawLine(transform.position, target.transform.position, c);
-
-            // Debug.Log($"In View: {inView}, Is Visible: {isVisible}");
-            // Vector3 lookDir = transform.forward * lookRadius;
-
-            float distance = Vector3.Distance(target.transform.position, transform.position);
-            Quaternion rot = Quaternion.LookRotation(targetDir);
-
-            if (distance < lookRadius)
+            if (Time.time > fireRate + lastShot) 
             {
-                // transform.Rotate(targetDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
-                if (distance >= agent.stoppingDistance)
-                {
-                    agent.SetDestination(target.transform.position);
-
-                    if (Time.time > fireRate + lastShot) 
-                    {
-                        var go = Instantiate(bullet, transform.position, transform.rotation);
-                        go.GetComponent<Rigidbody>().velocity = go.transform.forward * bulletVel;
-                        Destroy(go, 3);
-                        lastShot = Time.time;
-                    }
-                }
+                var go = Instantiate(bullet, transform.position, transform.rotation);
+                go.GetComponent<Rigidbody>().velocity = go.transform.forward * bulletVel;
+                go.GetComponent<BulletScript>()?.setShooter("drone");
+                Destroy(go, 3);
+                lastShot = Time.time;
             }
+        }
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            if (collision.gameObject.GetComponent<BulletScript>()?.shooter == "drone")
+                return;
 
-            // Debug.DrawRay(transform.position, lookDir, Color.cyan);
-            
-            // if (Physics.Raycast(transform.position, lookDir, out RaycastHit hit, Mathf.Infinity))
-            // {
-            //     Debug.DrawRay(transform.position, targetDir * hit.distance, Color.yellow);
-            //     if (hit.collider.gameObject.CompareTag("Player"))
-            //     {
-            //         agent.SetDestination(target.transform.position);
-            //         transform.Rotate(targetDir);
-            //         Debug.Log("FOUND THE PLAYER!!!!!!!!!!!!!!!!!!!!");
+            health = Mathf.Clamp(health - 10, 0, maxHealth);
 
-                    
-            //     }
-            //     else 
-            //     {
-            //         transform.Rotate(1, 1, 1);
-            //         Debug.Log("NOT THE PLAYER???????????????????");
-            //     }
-            //     // Debug.Log("Did Hit");
-            //     // var tp = target.transform.position;
-            //     // var p = tp * 0.9f;
-            //     // Debug.Log($"Target pos: {p.x} {p.y} {p.z}");
-            //     // Debug.Log(agent.SetDestination(p));
-            //     // agent.SetDestination(p);
-            // }
-            // else
-            // {
-            //     transform.Rotate(1, 1, 1);
-            // }
-            // else Debug.Log("Can not see the player");
+            if (health == 0)
+                GameObject.FindObjectOfType<DroneSpawner>()?.Kill(this.gameObject);
         }
     }
 

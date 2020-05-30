@@ -17,17 +17,6 @@ public class DroneSpawner : MonoBehaviour
 
     private int dronesLeft;
 
-    private static DroneSpawner instance;
-    public static DroneSpawner INSTANCE
-    {
-        get
-        {
-            if (instance == null)
-                instance = new DroneSpawner();
-            return instance;
-        }
-    }
-
     /// <summary>
     /// Carefully selected points on the map on which the drones should spawn
     /// </summary>
@@ -72,18 +61,7 @@ public class DroneSpawner : MonoBehaviour
         ui.SetDronesLeft(dronesLeft);
     }
 
-    int droneKillIndex = 0;
-
-    void Update()
-    {
-
-        // if ((int) Time.time % 5 == 0)
-        // {
-        //     Debug.Log($"Killing drone number {droneKillIndex}");
-        //     if (droneKillIndex >= 0 && droneKillIndex < dronesLeft)
-        //         Kill(drones[droneKillIndex++]);
-        // }
-    }
+    void Update() {}
 
     public void Kill(GameObject drone)
     {
@@ -91,11 +69,8 @@ public class DroneSpawner : MonoBehaviour
         {
             if (drones.Contains(drone))
             {
-                Debug.Log($"Killing {drone.gameObject.name}");
                 Destroy(drone);
-                dronesLeft--;
-                // ui.SetDronesLeft(dronesLeft);
-                Debug.Log($"Drones left: {dronesLeft}");
+                ui.SetDronesLeft(--dronesLeft);
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 
 public class BulletScript : NetworkBehaviour {
-    [SyncVar] private string shooter;
+    [SyncVar] public string shooter;
   
     private void OnCollisionEnter(Collision collision) {
         if (collision.transform.CompareTag("Player") && collision.transform.name != shooter) {
