@@ -29,6 +29,11 @@ public class DroneAI : MonoBehaviour
 
     private float yPosition;
 
+    [SerializeField]
+    private int maxHealth;
+
+    private int health;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +44,8 @@ public class DroneAI : MonoBehaviour
         yPosition = transform.position.y;
         transform.Rotate(0, 180, 0);
         mask = LayerMask.GetMask("LocalPlayer");
+
+        health = maxHealth;
     }
 
     bool FindPlayer()
@@ -90,6 +97,7 @@ public class DroneAI : MonoBehaviour
 
 
             Vector3 targetDir = target.transform.position - transform.position;
+            targetDir.y = targetDir.y + 2;
             float angleToPlayer = (Vector3.Angle(transform.forward, targetDir));
             
         //     inView = angleToPlayer < (viewAngle / 2.0f);
@@ -107,18 +115,26 @@ public class DroneAI : MonoBehaviour
         //     Debug.DrawLine(transform.position, target.transform.position, c);
 
             // Debug.Log($"In View: {inView}, Is Visible: {isVisible}");
-            Vector3 lookDir = transform.forward * lookRadius;
+            // Vector3 lookDir = transform.forward * lookRadius;
 
             float distance = Vector3.Distance(target.transform.position, transform.position);
+            Quaternion rot = Quaternion.LookRotation(targetDir);
 
             if (distance < lookRadius)
             {
-                transform.Rotate(targetDir);
-                if (distance <= agent.stoppingDistance)
+                // transform.Rotate(targetDir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
+                if (distance >= agent.stoppingDistance)
                 {
                     agent.SetDestination(target.transform.position);
 
-                    // Start shooting
+                    if (Time.time > fireRate + lastShot) 
+                    {
+                        var go = Instantiate(bullet, transform.position, transform.rotation);
+                        go.GetComponent<Rigidbody>().velocity = go.transform.forward * bulletVel;
+                        Destroy(go, 3);
+                        lastShot = Time.time;
+                    }
                 }
             }
 
