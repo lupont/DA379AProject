@@ -116,7 +116,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 0
-  maxHealth: 0
+  maxHealth: 10
 --- !u!195 &1227888993298421647
 NavMeshAgent:
   m_ObjectHideFlags: 0

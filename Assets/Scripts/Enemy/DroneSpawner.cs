@@ -69,6 +69,7 @@ public class DroneSpawner : MonoBehaviour
         }
 
         dronesLeft = amountOfDrones;
+        ui.SetDronesLeft(dronesLeft);
     }
 
     int droneKillIndex = 0;
