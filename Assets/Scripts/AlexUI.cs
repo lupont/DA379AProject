@@ -26,6 +26,11 @@ public class AlexUI : MonoBehaviour
     public const int LOSER = 1;
     private string[] messages = { "You are victorious", "You are a loser" };
 
+    public void Start()
+    {
+        Time.timeScale = 1f;
+        AlexPauseMenu.GameIsPaused = false;
+    }
 
     /// <summary>
     /// Set a new maximum value for the health bar and update the current
@@ -45,7 +50,7 @@ public class AlexUI : MonoBehaviour
     /// <param name="health">New health value</param>
     public void SetHealth(int health)
     {
-        if (health > healthSlider.maxValue) health = (int) healthSlider.maxValue;
+        if (health > healthSlider.maxValue) health = (int)healthSlider.maxValue;
         healthSlider.value = health;
         healthFill.color = healthGradient.Evaluate(healthSlider.normalizedValue);
     }
@@ -68,7 +73,7 @@ public class AlexUI : MonoBehaviour
     /// <param name="shield">New shield value</param>
     public void SetShield(int shield)
     {
-        if (shield > shieldSlider.maxValue) shield = (int) shieldSlider.maxValue;
+        if (shield > shieldSlider.maxValue) shield = (int)shieldSlider.maxValue;
         shieldSlider.value = shield;
         shieldFill.color = shieldGradient.Evaluate(shieldSlider.normalizedValue);
     }
@@ -136,8 +141,10 @@ public class AlexUI : MonoBehaviour
 
     public void DisplayEndMessage()
     {
-        hud.SetActive(false); 
+        hud.SetActive(false);
         endSplash.SetActive(true);
+        Time.timeScale = 0f;
+        AlexPauseMenu.GameIsPaused = true;
     }
 
 }
