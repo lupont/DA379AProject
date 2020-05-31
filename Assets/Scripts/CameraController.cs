@@ -7,9 +7,16 @@ public class CameraController : MonoBehaviour {
     [SerializeField] private Transform player, gun;
 
     void Update() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        RotateCamera();
+        if (AlexPauseMenu.GameIsPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        } else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            RotateCamera();
+        }
     }
 
     void RotateCamera() {
