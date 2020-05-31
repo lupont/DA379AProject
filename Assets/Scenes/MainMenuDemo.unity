@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1976,7 +1976,7 @@ PrefabInstance:
     - target: {fileID: 6509296663832592548, guid: ae7ab9f109442fc4f921414c94321f8a,
         type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6509296663832592548, guid: ae7ab9f109442fc4f921414c94321f8a,
         type: 3}
@@ -1991,7 +1991,7 @@ PrefabInstance:
     - target: {fileID: 6509296663832592548, guid: ae7ab9f109442fc4f921414c94321f8a,
         type: 3}
       propertyPath: networkAddress
-      value: 178.174.200.134
+      value: localhost
       objectReference: {fileID: 0}
     - target: {fileID: 6509296663832592549, guid: ae7ab9f109442fc4f921414c94321f8a,
         type: 3}
@@ -3694,7 +3694,7 @@ MonoBehaviour:
   offlineScene: Assets/Scenes/MainMenuDemo.unity
   onlineScene: Assets/Scenes/MainMenuDemo.unity
   transport: {fileID: 1702666621}
-  networkAddress: 178.174.200.134
+  networkAddress: localhost
   maxConnections: 6
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
@@ -3705,7 +3705,6 @@ MonoBehaviour:
   playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 5641420869127595345, guid: 374f262a5c523234d8a482bf09041533, type: 3}
-  - {fileID: 1227888993360692232, guid: e6fbcef6b367445f9a3ee509e69241ee, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 9017677078031112581, guid: 0f1f0a137ba8863418e24c5bbaaa90f6,

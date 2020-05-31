@@ -112,12 +112,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5641420869127595345, guid: 374f262a5c523234d8a482bf09041533, type: 3}
-  bulletVel: 20
-  fireRate: 5
+  bulletVel: 40
+  fireRate: 2
   mask:
     serializedVersion: 2
     m_Bits: 0
-  lookRadius: 20
+  lookRadius: 30
   maxHealth: 30
 --- !u!195 &1227888993298421647
 NavMeshAgent:

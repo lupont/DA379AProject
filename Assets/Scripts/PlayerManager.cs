@@ -7,8 +7,7 @@ public class PlayerManager : NetworkBehaviour {
     [SerializeField] private Behaviour[] disables;
     [SerializeField] private GameObject[] doNotRender;
     [SerializeField] private AlexUI ui;
-    [SyncVar] private int players;
-    
+    [SyncVar] public int players;
 
 
     // Disable scripts for non-local players and disable rendering for body parts of local player
@@ -29,11 +28,12 @@ public class PlayerManager : NetworkBehaviour {
         transform.name = id;
 
         hideNetworkHUD();
-        CmdPlayersLeft();
     }
 
     private void Update() {
-        checkPlayersLeft();
+        if (isLocalPlayer) {
+            checkPlayersLeft();
+        }
     }
 
     private void hideNetworkHUD() {

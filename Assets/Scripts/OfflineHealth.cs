@@ -16,7 +16,7 @@ public class OfflineHealth : MonoBehaviour {
         ui.SetMaxShield(maxShield);
         health = maxHealth;
         shield = maxShield;
-        InvokeRepeating("Regenerate", 0, 0.5f);
+        InvokeRepeating("Regenerate", 0, 1f);
     }
 
     void Update() {
@@ -54,8 +54,8 @@ public class OfflineHealth : MonoBehaviour {
 
     private void Regenerate() {
         if (health < maxHealth) {
-            health += 1;
-            gameObject.SetActive(false);
+            health += 2;
+            ui.SetHealth(health);
         }
     }
 
