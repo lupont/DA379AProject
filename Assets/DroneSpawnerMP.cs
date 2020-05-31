@@ -16,7 +16,6 @@ public class DroneSpawnerMP : NetworkBehaviour {
     }
 
     [Command]
-
     void CmdSpawnDrone() {
         var go = Instantiate(drone, gameObject.transform.position, gameObject.transform.rotation);
         NetworkServer.Spawn(go);

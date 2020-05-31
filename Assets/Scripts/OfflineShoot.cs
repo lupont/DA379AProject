@@ -9,12 +9,13 @@ public class OfflineShoot : MonoBehaviour {
     [SerializeField] private float bulletVel = 5;
     [SerializeField] private float fireRate;
     [SerializeField] private TextMeshProUGUI ammoText;
-    private string shooter;
+    private string shooter = "OfflinePlayer";
     private int maxAmmo = 15;
     private float lastShot = 0;
     private int ammunition = 15;
 
     private void Start() {
+
     }
 
     // Update is called once per frame
