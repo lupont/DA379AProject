@@ -19,7 +19,7 @@ public class OfflineShoot : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetButtonDown("Fire1") && (Time.time > fireRate + lastShot) && (ammunition > 0)) {
+        if (Input.GetButtonDown("Fire1") && (Time.time > fireRate + lastShot) && (ammunition > 0) && !AlexPauseMenu.GameIsPaused) {
             Fire(barrel.position, barrel.rotation, shooter);
             ammunition--;
             ammoText.text = ammunition.ToString();
