@@ -73,5 +73,11 @@ public class DroneSpawner : MonoBehaviour
                 ui.SetDronesLeft(--dronesLeft);
             }
         }
+
+        if (dronesLeft <= 0)
+        {
+            ui.SetEndMessage(AlexUI.WINNER);
+            ui.DisplayEndMessage();
+        }
     }
 }
