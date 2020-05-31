@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 83ab8f1eccf5aac439eaf8da5c9d8931, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!43 &5305656
 Mesh:
   m_ObjectHideFlags: 0
@@ -18005,7 +18005,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-201882
+  m_Name: pb_Mesh-60248
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21960,7 +21960,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-121668
+  m_Name: pb_Mesh-60788
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27021,7 +27021,7 @@ PrefabInstance:
     - target: {fileID: 4929647434627603579, guid: 9d0a6b0cc7d22094589fffbc5b70a7d2,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929647434643604839, guid: 9d0a6b0cc7d22094589fffbc5b70a7d2,
         type: 3}
