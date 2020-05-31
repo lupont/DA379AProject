@@ -1976,7 +1976,7 @@ PrefabInstance:
     - target: {fileID: 6509296663832592548, guid: ae7ab9f109442fc4f921414c94321f8a,
         type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6509296663832592548, guid: ae7ab9f109442fc4f921414c94321f8a,
         type: 3}
@@ -3191,6 +3191,7 @@ GameObject:
   - component: {fileID: 1592657762}
   - component: {fileID: 1592657761}
   - component: {fileID: 1592657760}
+  - component: {fileID: 1592657763}
   m_Layer: 5
   m_Name: SPButton
   m_TagString: Untagged
@@ -3261,8 +3262,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2044621586}
-        m_MethodName: PlayGame
+      - m_Target: {fileID: 1592657763}
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3308,6 +3309,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592657758}
   m_CullTransparentMesh: 0
+--- !u!114 &1592657763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592657758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa7a8e641b18b94c9a4b22136f37234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1649515840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3692,6 +3705,7 @@ MonoBehaviour:
   playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 5641420869127595345, guid: 374f262a5c523234d8a482bf09041533, type: 3}
+  - {fileID: 1227888993360692232, guid: e6fbcef6b367445f9a3ee509e69241ee, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 9017677078031112581, guid: 0f1f0a137ba8863418e24c5bbaaa90f6,
