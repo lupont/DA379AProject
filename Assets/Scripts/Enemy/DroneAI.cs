@@ -9,8 +9,6 @@ public class DroneAI : MonoBehaviour
     
     private GameObject target;
 
-
-
     [SerializeField]
     private GameObject bullet;
 
@@ -25,7 +23,8 @@ public class DroneAI : MonoBehaviour
 
     private float lastShot = 0;
 
-    private float lookRadius = 15;
+    [SerializeField]
+    private float lookRadius = 20;
 
     private float yPosition;
 
